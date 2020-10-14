@@ -5,21 +5,23 @@ import Home from "../routes/Home"
 import Schedule from "../routes/Schedule"
 import Important from "../routes/Important"
 
-const AppRouter = () => {
+const AppRouter = ({ userObj, isLoggedIn }) => {
     return (
         <>
             <Router>
-                <Navigation></Navigation>
+                <Navigation isLoggedIn={isLoggedIn} userObj={userObj}></Navigation>
                 <div className="wrapper">
-                    <Route exact path="/">
-                        <Home />
-                    </Route>
-                    <Route exact path="/schedule">
-                        <Schedule />
-                    </Route>
-                    <Route exact path="/important">
-                        <Important />
-                    </Route>
+                    <Switch>
+                        <Route exact path="/">
+                            <Home />
+                        </Route>
+                        <Route exact path="/schedule">
+                            <Schedule />
+                        </Route>
+                        <Route exact path="/important">
+                            <Important />
+                        </Route>
+                    </Switch>
                 </div>
             </Router>
         </>

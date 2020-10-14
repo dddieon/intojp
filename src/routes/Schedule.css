@@ -5,3 +5,9 @@
 .react-calendar__tile {
     padding: 3em 0.5em;
 }
+
+.plan {
+    margin-top: 0.4em;
+    padding: 0.2em;
+    border-top: 1px solid #c0c0c0;
+}
