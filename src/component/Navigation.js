@@ -13,10 +13,18 @@ const Ulist = styled.ul`
 `
 
 const ListBox = styled.li`
-    a {
+    > * {
         display: block;
-        padding: 20px;
+        padding: 1em;
+        border-right: 1px solid rgb(233, 244, 248);
     }
+`
+const Button = styled.button`
+    display: "block";
+    padding: "1em";
+    cursor: "pointer";
+    border-left: 1px solid #fff;
+    background-color: rgb(233, 244, 248);
 `
 export default function Navigation() {
     return (
@@ -28,13 +36,13 @@ export default function Navigation() {
                     </Link>
                 </ListBox>
                 <ListBox>
-                    <Link to="/schedule">상담 예약하기</Link>
+                    <Link to="/schedule">상담예약</Link>
                 </ListBox>
                 <ListBox>
                     <Link to="/important">공지사항</Link>
                 </ListBox>
             </Ulist>
-            <button>관리자 로그인</button>
+            <Button>ADMIN</Button>
         </Nav>
     )
 }

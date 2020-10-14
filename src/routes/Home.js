@@ -18,7 +18,7 @@ export default function Home() {
     }
     const image = {
         display: "block",
-        width: 800,
+        maxWidth: "80%",
         marginBottom: 30,
     }
     const button = {
