@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useRef } from "react"
-import { dbService, storageService } from "fbase"
+import React, { useState, useEffect } from "react"
+import { dbService } from "fbase"
 import Calendar from "react-calendar"
 import "react-calendar/dist/Calendar.css"
 import "./Schedule.css"
@@ -8,39 +8,31 @@ export default function Schedule() {
     const [plan, setPlan] = useState(null)
     const [label, setLabel] = useState(null)
     const [loading, setLoading] = useState(true)
-    const refId = useRef(1)
     const onChange = (value) => {
         setDate(value)
     }
     const onClickday = async (value, event) => {
         const prompted = prompt("일정을 입력하세요", "")
         if (prompted) {
-            const p = document.createElement("p")
-            p.setAttribute("class", "plan")
-            p.innerText = prompted
-            event.target.appendChild(p)
-            //클릭한 이후로 데이터를 넣자
+            //입력받은 데이터를 넣자
             const planObj = {
-                id: refId.current,
                 plan: prompted,
                 when: event.target.children[0].getAttribute("aria-label"),
                 createdAt: Date.now(),
             }
             await dbService.collection("calander").add(planObj)
         } else {
-            return
+            return false
         }
-        refId.current += 1
     }
     const Mount = () => {
         // plan이라는 클라우드데이터배열을 반복문 돌려서, ariaLabel과 plan[순서].when이 일치하는 것만 빼오기
         if (plan && label) {
             label.forEach((L, index) => {
+                // L은 appendChild하고 싶은 부모 엘리먼트이다
                 const haveToLabel = L.children[0].getAttribute("aria-label")
                 plan.forEach((element) => {
                     if (element.when === haveToLabel) {
-                        console.log(L)
-                        console.log("상단의 엘리먼트에 appendChild하자")
                         const p = document.createElement("p")
                         p.setAttribute("class", "plan")
                         p.innerText = element.plan

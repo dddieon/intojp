@@ -1,5 +1,5 @@
 import React from "react"
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
+import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom"
 import Navigation from "./Navigation"
 import Home from "../routes/Home"
 import Schedule from "../routes/Schedule"
@@ -8,7 +8,7 @@ import Important from "../routes/Important"
 const AppRouter = ({ userObj, isLoggedIn }) => {
     return (
         <>
-            <Router>
+            <Router basename={process.env.PUBLIC_URL}>
                 <Navigation isLoggedIn={isLoggedIn} userObj={userObj}></Navigation>
                 <div className="wrapper">
                     <Switch>
@@ -21,6 +21,7 @@ const AppRouter = ({ userObj, isLoggedIn }) => {
                         <Route exact path="/important">
                             <Important />
                         </Route>
+                        <Redirect path="*" to="/" />
                     </Switch>
                 </div>
             </Router>

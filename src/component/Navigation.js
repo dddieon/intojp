@@ -54,11 +54,9 @@ export default function Navigation({ isLoggedIn }) {
                     <Link to="/important">공지사항</Link>
                 </ListBox>
             </Ulist>
-            {!isLoggedIn && (
-                <Button to="/" onClick={LoginAdmin} style={padding}>
-                    Login
-                </Button>
-            )}
+            <Button to="/" onClick={LoginAdmin} style={padding}>
+                Login
+            </Button>
         </Nav>
     )
 }
