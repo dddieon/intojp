@@ -1,11 +1,10 @@
 import React from "react"
 import { Link } from "react-router-dom"
-import "../routes/Home.css"
+import Aos from "aos"
+import "aos/dist/aos.css"
+
 export default function Home() {
     const homeDiv = {
-        backgroundColor: "#222",
-        height: "100%",
-        color: "white",
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
@@ -14,15 +13,42 @@ export default function Home() {
     const h2 = {
         marginBottom: "20px",
     }
+    const image = {
+        display: "block",
+        width: 800,
+        marginBottom: 30,
+    }
+    const button = {
+        display: "block",
+        padding: "10px",
+        color: "#222 !important",
+        background: " rgb(255, 187, 0)",
+        borderRadius: "10px",
+        fontWeight: 7,
+    }
     return (
         <div style={homeDiv}>
-            <h1>인투제이피</h1>
+            <img
+                src={require("../assets/image/landscape.jpg")}
+                alt={"landscape"}
+                style={image}
+            ></img>
+            <img
+                src={require("../assets/image/landscape.jpg")}
+                alt={"landscape"}
+                style={image}
+            ></img>
+            <img
+                src={require("../assets/image/landscape.jpg")}
+                alt={"landscape"}
+                style={image}
+            ></img>
             <h2 style={h2}>
                 인투제이피는 일본 유학과 일본 취업을 위해 만들어진 유학원과 취업센터를 결합한, 일본
                 유학 취업 컨설팅 전문 1인 운영 상담소 입니다.
             </h2>
-            <Link className="button" to="/schedule">
-                입장하기
+            <Link className="button" to="/schedule" style={button}>
+                상담 스케쥴 확인하기
             </Link>
         </div>
     )
