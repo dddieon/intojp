@@ -22,7 +22,7 @@ const ListBox = styled.li`
         border-right: 1px solid rgb(233, 244, 248);
     }
 `
-const Button = styled(Link)`
+const Button = styled.button`
     display: "block";
     padding: "1em";
     cursor: "pointer";
@@ -54,7 +54,7 @@ export default function Navigation({ isLoggedIn }) {
                     <Link to="/important">공지사항</Link>
                 </ListBox>
             </Ulist>
-            <Button to="/" onClick={LoginAdmin} style={padding}>
+            <Button onClick={LoginAdmin} style={padding}>
                 Login
             </Button>
         </Nav>
