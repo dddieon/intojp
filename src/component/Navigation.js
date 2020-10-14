@@ -2,10 +2,14 @@ import React from "react"
 import { Link } from "react-router-dom"
 import styled, { css } from "styled-components"
 
+const Nav = styled.nav`
+    display: flex;
+    background: lightblue;
+`
+
 const Ulist = styled.ul`
     display: flex;
-    background: rgba(30, 30, 40, 0.45);
-    margin-bottom: 30px;
+    flex: 1;
 `
 
 const ListBox = styled.li`
@@ -16,7 +20,7 @@ const ListBox = styled.li`
 `
 export default function Navigation() {
     return (
-        <nav>
+        <Nav>
             <Ulist>
                 <ListBox>
                     <Link to="/">
@@ -24,9 +28,13 @@ export default function Navigation() {
                     </Link>
                 </ListBox>
                 <ListBox>
-                    <Link to="/schedule">스케쥴</Link>
+                    <Link to="/schedule">상담 예약하기</Link>
+                </ListBox>
+                <ListBox>
+                    <Link to="/important">공지사항</Link>
                 </ListBox>
             </Ulist>
-        </nav>
+            <button>관리자 로그인</button>
+        </Nav>
     )
 }
