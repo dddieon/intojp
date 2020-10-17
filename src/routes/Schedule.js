@@ -1,14 +1,10 @@
 import React, { useState, useEffect, useCallback } from "react"
 import { dbService } from "fbase"
 import Calendar from "react-calendar"
+import Tile from "react-calendar"
 import "react-calendar/dist/Calendar.css"
 import "./Schedule.css"
 export default function Schedule() {
-    // 현재 페이지 상태
-    const nowCalander = document.querySelector(
-        ".react-calendar__navigation__label__labelText--from"
-    )
-    const [nowView, setNowView] = useState(nowCalander)
     const [date, setDate] = useState(new Date())
     const [plan, setPlan] = useState(null)
     const [label, setLabel] = useState(null)
@@ -20,12 +16,25 @@ export default function Schedule() {
             page[i].addEventListener("click", console.log("야"))
         }
     }
-    // .addEventListener(
-    //     "click",
-    //     setNowView(
-    //         document.querySelector(".react-calendar__navigation__label__labelText--from")
-    //     )
-    // )
+
+    // 콜백으로 get하기
+    const onView = useCallback(() => {
+        // 스케쥴정보 get하기
+        try {
+            dbService.collection("calander").onSnapshot((snapshot) => {
+                const 가공 = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }))
+                setPlan(가공)
+            })
+            // react-calendar__tile 안을 탐색해서 가공의 when과 일치하는 abbr태그를 찾기
+            const title = document.getElementsByClassName("react-calendar__tile")
+            const arr = Array.from(title)
+            setLabel(arr)
+            setLoading(false)
+        } catch (e) {
+            console.log(e)
+        }
+    }, [])
+
     const onChange = (value) => {
         setDate(value)
     }
@@ -66,7 +75,7 @@ export default function Schedule() {
             }
         }
         Mount()
-    }, [plan])
+    }, [label, plan])
 
     useEffect(() => {
         const getSchedule = async () => {
@@ -87,5 +96,17 @@ export default function Schedule() {
         }
         getSchedule()
     }, [])
-    return <Calendar value={date} onChange={onChange} onClickDay={onClickday}></Calendar>
+    return (
+        <Calendar
+            value={date}
+            onChange={onChange}
+            onClickDay={onClickday}
+            onViewChange={({ activeStartDate, view }) => {
+                onView()
+            }}
+            onActiveStartDateChange={({ activeStartDate, view }) => {
+                onView()
+            }}
+        ></Calendar>
+    )
 }
