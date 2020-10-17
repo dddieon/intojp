@@ -1,13 +1,31 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useCallback } from "react"
 import { dbService } from "fbase"
 import Calendar from "react-calendar"
 import "react-calendar/dist/Calendar.css"
 import "./Schedule.css"
 export default function Schedule() {
+    // 현재 페이지 상태
+    const nowCalander = document.querySelector(
+        ".react-calendar__navigation__label__labelText--from"
+    )
+    const [nowView, setNowView] = useState(nowCalander)
     const [date, setDate] = useState(new Date())
     const [plan, setPlan] = useState(null)
     const [label, setLabel] = useState(null)
     const [loading, setLoading] = useState(true)
+    // 현재 페이지 변환함을 감지
+    if (document.getElementsByTagName("react-calendar__navigation__label")) {
+        const page = document.getElementsByTagName("react-calendar__navigation__label")
+        for (var i = 0; i < page.length; i++) {
+            page[i].addEventListener("click", console.log("야"))
+        }
+    }
+    // .addEventListener(
+    //     "click",
+    //     setNowView(
+    //         document.querySelector(".react-calendar__navigation__label__labelText--from")
+    //     )
+    // )
     const onChange = (value) => {
         setDate(value)
     }
@@ -25,37 +43,49 @@ export default function Schedule() {
             return false
         }
     }
-    const Mount = () => {
-        // plan이라는 클라우드데이터배열을 반복문 돌려서, ariaLabel과 plan[순서].when이 일치하는 것만 빼오기
-        if (plan && label) {
-            label.forEach((L, index) => {
-                // L은 appendChild하고 싶은 부모 엘리먼트이다
-                const haveToLabel = L.children[0].getAttribute("aria-label")
-                plan.forEach((element) => {
-                    if (element.when === haveToLabel) {
-                        const p = document.createElement("p")
-                        p.setAttribute("class", "plan")
-                        p.innerText = element.plan
-                        L.appendChild(p)
-                    }
-                })
-            })
-        }
-    }
-    Mount()
     useEffect(() => {
-        // 스케쥴정보 get하기
-        dbService.collection("calander").onSnapshot((snapshot) => {
-            const 가공 = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }))
-            setPlan(가공)
-        })
-        // react-calendar__tile 안을 탐색해서 가공의 when과 일치하는 abbr태그를 찾기
-        const title = document.getElementsByClassName("react-calendar__tile")
-        const arr = Array.from(title)
-        arr.forEach((element, index) => console.log(element + "는" + index + "번째"))
-        setLabel(arr)
-        // 로딩 끝
-        setLoading(false)
+        const Mount = () => {
+            // plan이라는 클라우드데이터배열을 반복문 돌려서, ariaLabel과 plan[순서].when이 일치하는 것만 빼오기
+            if (plan && label) {
+                label.forEach((L, index) => {
+                    // L은 appendChild하고 싶은 부모 엘리먼트이다
+                    const haveToLabel = L.children[0].getAttribute("aria-label")
+                    plan.forEach((element) => {
+                        if (element.when === haveToLabel) {
+                            const p = document.createElement("p")
+                            p.setAttribute("class", "plan")
+                            p.innerText = element.plan
+                            // p태그 초기화
+                            if (L.childNodes[1]) {
+                                L.removeChild(L.childNodes[1])
+                            }
+                            L.appendChild(p)
+                        }
+                    })
+                })
+            }
+        }
+        Mount()
+    }, [plan])
+
+    useEffect(() => {
+        const getSchedule = async () => {
+            // 스케쥴정보 get하기
+            try {
+                await dbService.collection("calander").onSnapshot((snapshot) => {
+                    const 가공 = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }))
+                    setPlan(가공)
+                })
+                // react-calendar__tile 안을 탐색해서 가공의 when과 일치하는 abbr태그를 찾기
+                const title = document.getElementsByClassName("react-calendar__tile")
+                const arr = Array.from(title)
+                setLabel(arr)
+                setLoading(false)
+            } catch (e) {
+                console.log(e)
+            }
+        }
+        getSchedule()
     }, [])
     return <Calendar value={date} onChange={onChange} onClickDay={onClickday}></Calendar>
 }

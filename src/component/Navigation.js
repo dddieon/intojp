@@ -20,7 +20,7 @@ const ListBox = styled.li`
         display: block;
         padding: 1.5em;
         border-right: 1px solid rgb(233, 244, 248);
-        @media (max-width: 820px) {
+        @media (max-width: 768px) {
             padding: 0.5em;
         }
     }
@@ -31,9 +31,8 @@ const Button = styled.button`
     border-left: 1px solid #fff;
     padding: 1.5em;
     line-height: 1;
-    background-color: #efefef;
     font-weight: bold;
-    @media (max-width: 820px) {
+    @media (max-width: 768px) {
         padding: 0.5em;
     }
 `
