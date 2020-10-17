@@ -7,7 +7,7 @@ import styled, { css } from "styled-components"
 
 const Nav = styled.nav`
     display: flex;
-    background: lightblue;
+    border-bottom: 1px solid #aaa;
 `
 
 const Ulist = styled.ul`
@@ -16,22 +16,28 @@ const Ulist = styled.ul`
 `
 
 const ListBox = styled.li`
-    > * {
+    > a {
         display: block;
-        padding: 1em;
+        padding: 1.5em;
         border-right: 1px solid rgb(233, 244, 248);
+        @media (max-width: 820px) {
+            padding: 0.5em;
+        }
     }
 `
 const Button = styled.button`
     display: "block";
-    padding: "1em";
     cursor: "pointer";
     border-left: 1px solid #fff;
-    background-color: rgb(233, 244, 248);
+    padding: 1.5em;
+    line-height: 1;
+    background-color: #efefef;
+    font-weight: bold;
+    @media (max-width: 820px) {
+        padding: 0.5em;
+    }
 `
-const padding = {
-    padding: "1em",
-}
+
 // 함수
 
 const LoginAdmin = async (event) => {
@@ -54,9 +60,7 @@ export default function Navigation({ isLoggedIn }) {
                     <Link to="/important">공지사항</Link>
                 </ListBox>
             </Ulist>
-            <Button onClick={LoginAdmin} style={padding}>
-                Login
-            </Button>
+            <Button onClick={LoginAdmin}>Login</Button>
         </Nav>
     )
 }
