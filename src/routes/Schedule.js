@@ -35,9 +35,6 @@ export default function Schedule() {
         }
     }, [])
 
-    const onChange = (value) => {
-        setDate(value)
-    }
     const onClickday = async (value, event) => {
         const prompted = prompt("일정을 입력하세요", "")
         if (prompted) {
@@ -97,16 +94,21 @@ export default function Schedule() {
         getSchedule()
     }, [])
     return (
-        <Calendar
-            value={date}
-            onChange={onChange}
-            onClickDay={onClickday}
-            onViewChange={({ activeStartDate, view }) => {
-                onView()
-            }}
-            onActiveStartDateChange={({ activeStartDate, view }) => {
-                onView()
-            }}
-        ></Calendar>
+        <>
+            <Calendar
+                value={date}
+                onClickDay={onClickday}
+                onViewChange={({ activeStartDate, view }) => {
+                    onView()
+                }}
+                onActiveStartDateChange={({ activeStartDate, view }) => {
+                    onView()
+                }}
+            ></Calendar>
+            <div className="test">
+                <h2 className="test--title">Test Page</h2>
+                <p>현재는 Login을 통한 인증을 거치지 않아도, 누구나 데이터 수정이 가능합니다</p>
+            </div>
+        </>
     )
 }
