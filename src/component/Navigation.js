@@ -7,7 +7,11 @@ import styled, { css } from "styled-components"
 
 const Nav = styled.nav`
     display: flex;
-    border-bottom: 1px solid #aaa;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+    font-weight: 500;
+    > * :hover {
+        color: rgb(89, 205, 255);
+    }
 `
 
 const Ulist = styled.ul`
@@ -19,15 +23,14 @@ const ListBox = styled.li`
     > a {
         display: block;
         padding: 1.5em;
-        border-right: 1px solid rgb(233, 244, 248);
         @media (max-width: 768px) {
             padding: 0.5em;
         }
     }
 `
 const Button = styled.button`
-    display: "block";
-    cursor: "pointer";
+    display: block;
+    cursor: pointer;
     border-left: 1px solid #fff;
     padding: 1.5em;
     line-height: 1;

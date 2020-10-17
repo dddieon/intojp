@@ -29,6 +29,7 @@ const Div = styled.div`
         font-size: 30px;
         font-weight: bold;
         line-height: 1.5;
+        padding: 10px 0;
     }
     @media (max-width: 768px) {
         flex-direction: column;
