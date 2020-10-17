@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "cdb666698f5f2ee3c0445eb916449fe2",
+    "revision": "42d4fdc3a794ce8d844af66880f2ecef",
     "url": "/intojp/index.html"
   },
   {
@@ -8,8 +8,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/intojp/static/css/2.d630ec8a.chunk.css"
   },
   {
-    "revision": "ad4f6c53f79e7964b40f",
-    "url": "/intojp/static/css/main.b3690417.chunk.css"
+    "revision": "7ed1f4a26069b8aa7946",
+    "url": "/intojp/static/css/main.1da1b3f4.chunk.css"
   },
   {
     "revision": "f8c6dd6e0bfc62187443",
@@ -20,8 +20,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/intojp/static/js/2.e317d33d.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "ad4f6c53f79e7964b40f",
-    "url": "/intojp/static/js/main.095bb188.chunk.js"
+    "revision": "7ed1f4a26069b8aa7946",
+    "url": "/intojp/static/js/main.7250a133.chunk.js"
   },
   {
     "revision": "b152efe28e7250d22aad",
