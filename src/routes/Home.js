@@ -29,7 +29,6 @@ const Div = styled.div`
         font-size: 30px;
         font-weight: bold;
         line-height: 1.5;
-        padding: 10px 0;
     }
     @media (max-width: 768px) {
         flex-direction: column;
@@ -59,7 +58,7 @@ const TextBoxes = styled.div`
     padding: 50px;
     margin-bottom: 10px;
     h3 {
-        font-size: 20px;
+        font-size: 16px;
         font-weight: bold;
         margin-bottom: 30px;
     }
@@ -123,7 +122,7 @@ function Home() {
                 ></img>
             </ImageBoxes>
             <TextBoxes className="box--text">
-                <h3>신뢰를 기반으로</h3>
+                <h3>검증된 실력, 무한한 신뢰를 바탕으로</h3>
                 <p>인투제이피는 일본 유학 취업 컨설팅 전문 1인 운영 상담소 입니다.</p>
                 <p>일본 유학과 일본 취업을 위해 만들어진 유학원과 취업센터를 결합한 형태로, </p>
                 <p>실력으로 수차례 인증된 전문가만의 코칭을 해드립니다.</p>

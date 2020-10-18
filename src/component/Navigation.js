@@ -35,12 +35,17 @@ const Button = styled.button`
     padding: 1.5em;
     line-height: 1;
     font-weight: bold;
+    :hover {
+        color: rgb(89, 205, 255);
+    }
     @media (max-width: 768px) {
         padding: 0.5em;
     }
 `
-
-// 함수
+// css style
+const logoStyle = {
+    background: "url(../assets/image/logo.png)",
+}
 
 const LoginAdmin = async (event) => {
     const provider = new firebaseInstance.auth.GoogleAuthProvider()
@@ -51,8 +56,8 @@ export default function Navigation({ isLoggedIn }) {
         <Nav>
             <Ulist>
                 <ListBox>
-                    <Link to="/">
-                        <h1>Intojp</h1>
+                    <Link to="/" style={logoStyle}>
+                        INTOJP
                     </Link>
                 </ListBox>
                 <ListBox>

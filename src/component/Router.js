@@ -4,6 +4,7 @@ import Navigation from "./Navigation"
 import Home from "../routes/Home"
 import Schedule from "../routes/Schedule"
 import Important from "../routes/Important"
+import Footer from "./Footer"
 
 const AppRouter = ({ userObj, isLoggedIn }) => {
     return (
@@ -24,6 +25,7 @@ const AppRouter = ({ userObj, isLoggedIn }) => {
                         <Redirect path="*" to="/" />
                     </Switch>
                 </div>
+                <Footer />
             </Router>
         </>
     )
